@@ -7,7 +7,6 @@ import { SignInController } from './controllers/sign-in.controllers';
 import { createPost } from './controllers/post.controller';
 
 import { deletePost } from './controllers/delete.controller';
-import { AllowedOrigins } from './library/alloweOrigins';
 import type{ Request,Response } from 'express';
 dotenv.config();
 
