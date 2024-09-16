@@ -7,13 +7,19 @@ import { SignInController } from './controllers/sign-in.controllers';
 import { createPost } from './controllers/post.controller';
 
 import { deletePost } from './controllers/delete.controller';
-
+import { AllowedOrigins } from './library/alloweOrigins';
 dotenv.config();
 
 const server = express();
 const port = process.env.PORT || 4000;
 server.use(express.json());
-server.use(cors());
+server.use(cors(
+    {
+        origin: '*', // Allows all origins
+        methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+        allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    }
+));
 server.use(helmet());
 
 
