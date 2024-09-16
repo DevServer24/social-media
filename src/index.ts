@@ -14,20 +14,7 @@ dotenv.config();
 const server = express();
 const port = process.env.PORT || 4000;
 server.use(express.json());
-server.use(cors(
-    {
-        origin: (origin, callback) => {
-            // Allow requests with no origin, like mobile apps or curl requests
-            if (!origin || AllowedOrigins.includes(origin)) {
-              callback(null, true);
-            } else {
-              callback(new Error('Not allowed by CORS'));
-            }
-          },
-          methods: ['GET', 'POST', 'PUT', 'DELETE'],
-          allowedHeaders: ['Content-Type', 'Authorization'],
-    }
-));
+server.use(cors());
 server.use(helmet());
 server.get('/',() =>{
 
