@@ -9,6 +9,7 @@
     
     "vercel-build":"echo anything comes to your mind"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
