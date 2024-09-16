@@ -15,21 +15,19 @@ const port = process.env.PORT || 4000;
 server.use(express.json());
 server.use(cors(
     {
-        origin: '*', // Allows all origins
-        methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-        allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+        origin: (origin, callback) => {
+            // Allow requests with no origin, like mobile apps or curl requests
+            if (!origin || AllowedOrigins.includes(origin)) {
+              callback(null, true);
+            } else {
+              callback(new Error('Not allowed by CORS'));
+            }
+          },
+          methods: ['GET', 'POST', 'PUT', 'DELETE'],
+          allowedHeaders: ['Content-Type', 'Authorization'],
     }
 ));
 server.use(helmet());
-
-
-
-
-
-
-
-
-
 server.get('/',() =>{
 
 });
@@ -40,3 +38,9 @@ server.post('/delete-post',deletePost)
 server.listen(port,() =>{
     console.log(`Server Connected to localhost:${port}`)
 });
+
+
+
+
+
+export {server}
