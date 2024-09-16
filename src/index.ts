@@ -8,6 +8,7 @@ import { createPost } from './controllers/post.controller';
 
 import { deletePost } from './controllers/delete.controller';
 import { AllowedOrigins } from './library/alloweOrigins';
+import type{ Request,Response } from 'express';
 dotenv.config();
 
 const server = express();
@@ -35,6 +36,9 @@ server.post('/sign-up',SignUpController);
 server.post('/sign-in',SignInController);
 server.post('/create-post',createPost);
 server.post('/delete-post',deletePost)
+server.get('/', (req: Request, res: Response) => {
+  res.send('Hello, world!');
+});
 server.listen(port,() =>{
     console.log(`Server Connected to localhost:${port}`)
 });
