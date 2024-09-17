@@ -7,21 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Post {
+  id        String   @id @db.Uuid
+  post      String?
+  comment   String?
+  likes     Int
+  createdAt DateTime @db.Date
+  updatedAt DateTime
+  userId    String?  @db.Uuid
+  User      User?    @relation(fields: [userId], references: [id])
+}
+
 model User {
-  id       String @id @default(uuid()) @db.Uuid
+  id       String @id @db.Uuid
   name     String
   email    String
   password String
-  post     Post[]
-}
-
-model Post {
-  id        String   @id @default(uuid()) @db.Uuid
-  post      String?
-  comment   String?
-  likes     Int      @db.Integer
-  createdAt DateTime? @db.Date
-  updatedAt DateTime? @updatedAt
-  User      User?    @relation(fields: [userId], references: [id])
-  userId    String?  @db.Uuid
+  Post     Post[]
 }
